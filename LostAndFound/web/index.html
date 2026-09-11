@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCS Lost &amp; Found Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!-- AUTH SCREEN (login / register)                                 -->
+<!-- ============================================================= -->
+<section id="auth-screen" class="auth-screen">
+  <div class="auth-hero">
+    <div class="auth-hero-inner">
+      <p class="wordmark">MCS <span>&middot;</span> LOST &amp; FOUND</p>
+      <div class="morse-rule" aria-hidden="true"></div>
+      <h1>The Registry keeps<br>what campus loses.</h1>
+      <p class="auth-hero-copy">Report an item, search open reports, and track claims &mdash;
+        one signed record at a time.</p>
+      <ul class="auth-hero-list">
+        <li>Every report is timestamped and matched automatically</li>
+        <li>Claims are reviewed and logged by the front office</li>
+        <li>Nothing here requires a database &mdash; just this server</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-card">
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab is-active" data-tab="login" role="tab">Sign in</button>
+        <button class="auth-tab" data-tab="register" role="tab">Register</button>
+      </div>
+
+      <form id="login-form" class="auth-form" autocomplete="off">
+        <label class="field">
+          <span>Username</span>
+          <input type="text" name="username" required>
+        </label>
+        <label class="field">
+          <span>Password</span>
+          <input type="password" name="password" required>
+        </label>
+        <label class="field field-checkbox">
+          <input type="checkbox" name="asAdmin">
+          <span>Sign in as front-office admin</span>
+        </label>
+        <p class="form-error" id="login-error" hidden></p>
+        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+        <p class="auth-hint">Default admin account &mdash; username <code>admin</code>, password <code>admin123</code></p>
+      </form>
+
+      <form id="register-form" class="auth-form" hidden autocomplete="off">
+        <label class="field">
+          <span>Full name</span>
+          <input type="text" name="fullName" required>
+        </label>
+        <label class="field">
+          <span>Choose a username</span>
+          <input type="text" name="username" required>
+        </label>
+        <label class="field">
+          <span>Choose a password</span>
+          <input type="password" name="password" required>
+        </label>
+        <label class="field">
+          <span>Contact (phone or email)</span>
+          <input type="text" name="contact" required>
+        </label>
+        <p class="form-error" id="register-error" hidden></p>
+        <button type="submit" class="btn btn-primary btn-block">Create account</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- APP SHELL (shown once signed in)                               -->
+<!-- ============================================================= -->
+<div id="app-shell" class="app-shell" hidden>
+
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <p class="wordmark small">MCS <span>&middot;</span> LOST &amp; FOUND</p>
+      <div class="morse-rule small" aria-hidden="true"></div>
+    </div>
+
+    <nav class="sidebar-nav" id="sidebar-nav"><!-- populated by app.js based on role --></nav>
+
+    <div class="sidebar-user">
+      <div class="sidebar-user-info">
+        <p class="sidebar-user-name" id="current-user-name">&mdash;</p>
+        <p class="sidebar-user-role" id="current-user-role">&mdash;</p>
+      </div>
+      <button id="logout-btn" class="btn btn-ghost btn-small">Sign out</button>
+    </div>
+  </aside>
+
+  <main class="content">
+    <header class="content-header">
+      <div>
+        <p class="content-eyebrow" id="view-eyebrow">Registry</p>
+        <h1 id="view-title">Dashboard</h1>
+      </div>
+      <div id="view-actions"></div>
+    </header>
+
+    <div id="view-body" class="view-body">
+      <!-- views injected by app.js -->
+    </div>
+  </main>
+</div>
+
+<!-- toast for confirmations -->
+<div id="toast" class="toast" hidden></div>
+
+<!-- item detail / match / claim modal -->
+<div id="modal-backdrop" class="modal-backdrop" hidden>
+  <div class="modal" id="modal"></div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
